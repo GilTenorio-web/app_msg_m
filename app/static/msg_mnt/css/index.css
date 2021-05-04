@@ -1,0 +1,26 @@
+div.home-image img {
+    position: absolute;
+    z-index: 1;
+    margin-top: 70px;
+    margin-left: 10%;
+    width: 40%;
+}
+
+div.home-intro-card{
+    position: absolute;
+    z-index: 2;
+    margin-top: 110px;
+    margin-left: 35%;
+    padding: 55px;
+    background-color: white;
+    box-shadow: 0 0 15px 2px rgb(207, 207, 207);
+    width: 40%;
+}
+
+h2 {
+    color: rgb(9, 92, 139)
+}
+
+p {
+    color: rgb(88, 87, 87);
+}

@@ -1,0 +1,69 @@
+div.card {
+    position: absolute;
+    margin-top: 80px;
+    padding: 55px;
+    background-color: white;
+    box-shadow: 0 0 15px 2px rgb(207, 207, 207);
+    text-align: center;
+}
+
+div.login {
+    margin-left: 15%;
+    width: 15%;
+}
+
+div.signup {
+    margin-left: 40%;
+    width: 35%;
+}
+
+div.profile {
+    margin-left: 30%;
+    width: 25%;
+}
+
+div.button {
+    text-align: center;
+    margin-top: 15px;
+}
+
+form {
+    text-align: left;
+}
+
+h2 {
+    color: rgb(9, 92, 139)
+}
+
+p, ul li {
+    color: gray;
+}
+
+.signup label, .login label{
+    display: none;
+}
+
+.profile label {
+    display:block;
+    margin-top: 25px;
+    color: gray;
+}
+
+input, select {
+    margin-top: 10px;
+}
+
+button {
+    height: 35px;
+    color:rgb(209, 93, 16);
+    font-weight: bold;
+    background-color: white;
+    border: solid 2px rgb(209, 93, 16);
+    border-radius: 5px;
+    text-align: center;
+}
+
+button:hover {
+    background-color: rgb(209, 93, 16);
+    color: white;
+}
