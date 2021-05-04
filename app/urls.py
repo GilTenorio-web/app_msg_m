@@ -17,6 +17,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib import admin
 from django.urls import path
 from users_manager import views
+from apps.endpoints.urls import urlpatterns as endpoints_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,3 +26,5 @@ urlpatterns = [
     path('sign-up/', views.UserSignUp.as_view(), name='sign-up'),
     path('profile-form/', views.profile_form, name='profile-form'),
 ]
+
+urlpatterns += endpoints_urlpatterns
