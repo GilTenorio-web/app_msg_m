@@ -23,11 +23,14 @@ div.login {
 
 div.signup {
     z-index: 10;
-    margin-left: 40%;
+    margin-top: 80px;
+    margin-left: 30%;
     width: 35%;
 }
 
 div.profile {
+    z-index: 10;
+    margin-top: 80px;
     margin-left: 30%;
     width: 25%;
 }
