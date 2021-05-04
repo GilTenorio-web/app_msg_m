@@ -6,16 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'msg_mnt/css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'msg_mnt/css/index.css' %}">
     <title>Index</title>
 </head>
 <body>
+    <div class="opaque_background"></div>
     {% include "navbar.html" %}
 
+    <div class="home-image">
+        <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
+    </div> 
+    <div class="home-intro-card">
+        <h2>Machine Learning</h2>
+        <p>Texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general.
+        </p>
+        <p>Texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
+            en general.
+        </p>
+    </div>
+
     <div class="login card">
+        <div class="x"><a href="{% url 'home' %}">X</a></div>
         <h2>Iniciar sesión</h2>
         <form method="POST">
             {% csrf_token %}
-            <input id="email" name="username" type="text" placeholder="correo">
+            <input id="email" name="username" type="text" placeholder="nickname">
             <input id="password" name="password" type="password" placeholder="contraseña">
             <div class="button">
                 <button>INICIAR SESIÓN</button>

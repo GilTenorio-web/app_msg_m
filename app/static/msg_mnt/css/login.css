@@ -1,6 +1,13 @@
+.opaque_background {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(128, 128, 128, 0.438);
+    z-index: 5;
+}
+
 div.card {
     position: absolute;
-    margin-top: 80px;
     padding: 55px;
     background-color: white;
     box-shadow: 0 0 15px 2px rgb(207, 207, 207);
@@ -8,11 +15,14 @@ div.card {
 }
 
 div.login {
-    margin-left: 15%;
+    z-index: 10;
+    margin-top: 150px;
+    margin-left: 40%;
     width: 15%;
 }
 
 div.signup {
+    z-index: 10;
     margin-left: 40%;
     width: 35%;
 }
@@ -66,4 +76,14 @@ button {
 button:hover {
     background-color: rgb(209, 93, 16);
     color: white;
+}
+
+div.x {
+    text-align: right;
+    font-weight: bold;
+}
+
+div.x a {
+    text-decoration: none;
+    color:grey;
 }
