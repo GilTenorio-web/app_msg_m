@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from users_manager.forms import ProfileForm
 
 
 # Create your views here.
@@ -12,7 +13,7 @@ def index(request):
     return render(request,"index.html",{"home":"active"})
 
 
-def login(request):
+def profile_form(request):
     if request.method == 'POST':
         form=ProfileForm(request.POST)
 
@@ -22,11 +23,11 @@ def login(request):
 
     else:
         form=ProfileForm()
+    return render(request,"profile-form.html",{"login":"active", "form":form})
 
-    return render(request,"login.html",{"login":"active","form":form})
 
 class UserSignUp(CreateView):
     model = User
     template_name = 'new_login.html'
     form_class = UserCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('profile-form')

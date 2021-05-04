@@ -121,6 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'msg_mnt/static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'app/static'),)
 
 LOGIN_REDIRECT_URL = reverse_lazy('home')
