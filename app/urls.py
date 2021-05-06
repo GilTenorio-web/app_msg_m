@@ -21,10 +21,11 @@ from apps.endpoints.urls import urlpatterns as endpoints_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index, name='home'),
+    path('', views.index, name='home'),
     path('login/', LoginView.as_view(), {'template_name':'login.html'}, name='login'),
     path('sign-up/', views.UserSignUp.as_view(), name='sign-up'),
     path('profile-form/', views.profile_form, name='profile-form'),
+    path('subir-comentarios/', views.load_message, name='subir-cm'),
 ]
 
 urlpatterns += endpoints_urlpatterns

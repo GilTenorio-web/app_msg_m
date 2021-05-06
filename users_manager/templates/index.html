@@ -15,21 +15,18 @@
         <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
     </div> 
     <div class="home-intro-card">
-        <h2>Machine Learning</h2>
-        <p>Texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general.
+        <h2>Objetivo</h2>
+        <p>Esta aplicación web tiene como objetivo monitorear comentarios agresivos en interacciones virtuales a través de texto.
         </p>
-        <p>Texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general, texto de prueba con introduccion articulo o contenido referente a nuestro modelo o al machine 
-            en general.
+        <h2>Monitoreo con aprendizaje supervisado</h2>
+        <p>Para monitorear los mensajes se implementó un modelo de aprendizaje supervisado, más específicamente el modelo de Naive Bayes, el cual está fundamentado en el teorema probabilístico de Bayes. Este modelo tiene como premisa que las variables predictoras son independientes entre sí. En pocas palabras, la presencia de cierta característica en un conjunto de datos no está relacionada con la presencia de cualquier otra característica.
+
+        <p>Este modelo funciona calculando la probabilidad posterior de que ocurra un cierto evento A, dadas algunas probabilidades de eventos anteriores.</p>
         </p>
+        <h2>Implementación y resultados</h2>
+        <p>El modelo se entreno y testeo con un corpus de 10475 textos, los cuales 7460 de ellos pertenecen a la clase de no ofensivos y 3015 a la clase de ofensivos. El corpus se dividió en dos partes la primera equivale al 70%, esta sirvió para entrenar el modelo y la segunda parte que consta del 30% sirvió para testear el modelo. De el testeo surgieron los siguientes resultados. El 0 es el mínimo y 1 el máximo.</p>
+        <p>Obtuvo 0.77 en frecuencia de clasificaciones correctas, 0.82 en precisión y 0.62 en sensibilidad. En pocas palabras, la precisión mide la relación entre las predicciones correctas y el número total de predicciones previstas y la sensibilidad mide cuán sensible es el clasificador para detectar instancias no ofensivas.</p>
+        <p>En conclusión, el modelo clasifica un gran porcentaje de los textos no ofensivos correctamente, sin embargo, hay menor probabilidad de clasificar correctamente los textos ofensivos, esto está relacionado con la disparidad de los datos contenidos en el corpus.</p>
     </div>   
 </body>
 </html>

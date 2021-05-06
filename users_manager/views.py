@@ -26,6 +26,10 @@ def profile_form(request):
     return render(request,"profile-form.html",{"login":"active", "form":form})
 
 
+def load_message(request):
+    return render(request, 'load-msg.html',{"load-msg":"active"})
+
+
 class UserSignUp(CreateView):
     model = User
     template_name = 'new_login.html'
