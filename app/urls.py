@@ -20,7 +20,7 @@ from users_manager import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index, name='home'),
+    path('', views.index, name='home'),
     path('login/', LoginView.as_view(), {'template_name':'login.html'}, name='login'),
     path('sign-up/', views.UserSignUp.as_view(), name='sign-up'),
     path('profile-form/', views.profile_form, name='profile-form'),
