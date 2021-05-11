@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Clasificador {% endblock %}
+
+{% block content %}
+
+<div class="home-image">
+    <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
+</div> 
+
+<div class="home-intro-card">
+    <p>{{text}}</p>
+    {% if pred == 0%}
+    <p>Mensaje no agresivo</p>
+    {% else %}
+    <p>Mensaje agresivo</p>
+    {% endif %}
+</div>  
+    
+{% endblock %}

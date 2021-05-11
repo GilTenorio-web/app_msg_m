@@ -24,4 +24,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), {'template_name':'login.html'}, name='login'),
     path('sign-up/', views.UserSignUp.as_view(), name='sign-up'),
     path('profile-form/', views.profile_form, name='profile-form'),
+    path('modelo/',views.modelo, name="modelo"), #se enlaza con la vista modelo
+    path('clasificador/',views.clasificador, name= "clasificador"),
 ]

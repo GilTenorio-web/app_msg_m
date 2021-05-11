@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Modelo {% endblock %}
+
+{% block content %}
+  <div class="home-image">
+    <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
+  </div> 
+
+  <div class="home-intro-card">
+    <div >
+      <h3>Ingresa un comentario</h3>
+    </div>
+
+    <div class="form_conf" style="margin: 1em;">
+      <form action ="/clasificador/" method="get">
+          <textarea name="tweet" cols="70" rows="5" style="resize:none;"></textarea>
+          <br>
+          <input type="submit"  value="Enviar">
+      </form>
+    </div>
+  </div> 
+  
+
+{% endblock %}
