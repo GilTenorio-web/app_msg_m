@@ -28,3 +28,16 @@ class CustomUser(models.Model):
     class Meta:
         verbose_name='profile'
         verbose_name_plural='profiles'
+
+    def __str__(self):
+        return '{}'.format(self.user)
+    
+class Archivo(models.Model):
+    name=models.CharField(max_length=100)
+    user=models.ForeignKey(CustomUser,null=True,blank=True,on_delete=models.CASCADE)
+    file = models.FileField(upload_to="archivos/", null=True,blank=True)
+
+    def __str__(self):
+        return '{}'.format(self.name)
+
+    

@@ -17,6 +17,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib import admin
 from django.urls import path
 from users_manager import views
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,13 @@ urlpatterns = [
     path('profile-form/', views.profile_form, name='profile-form'),
     path('modelo/',views.modelo, name="modelo"), #se enlaza con la vista modelo
     path('clasificador/',views.clasificador, name= "clasificador"),
+    path('upload/', views.entrada, name = "subida"),
+    path('listaArchivos/', views.file_list, name = "listaArchivos"),
+    url(r'^accounts/login/$', views.profile_form),
+    url(r'^classifier/(?P<id_file>\d+)/$', views.file_classifier, name= "clasificador"),
+    url(r'^delete/(?P<id_file>\d+)/$', views.file_delete, name= "delete-file"),
+
+
+
+
 ]

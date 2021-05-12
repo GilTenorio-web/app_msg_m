@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+    <div class="home-image">
+        <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
+    </div> 
+    <div class="home-intro-card">
+       <p>{{ id }}</p>
+    </div>   
+
+{% endblock %}

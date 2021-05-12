@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'msg_mnt/css/login.css' %}">
+    <title>Borrar</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+
+    <div class="profile card">
+        <h2>Eliminar archivo</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h3>¿Desea eliminar el archivo de {{file.name}}</h3>
+            <div class="button">
+                <button type="submit">Si, eliminar</button>
+                <a href="{% url 'listaArchivos'%}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

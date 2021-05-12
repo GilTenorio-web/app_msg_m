@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import ModelForm
+from django.forms import ModelForm, ClearableFileInput, widgets
 from django import forms
-from users_manager.models import CustomUser
+from users_manager.models import Archivo, CustomUser
 
 class ProfileForm(ModelForm):
     
@@ -37,3 +37,31 @@ class SignupForm(UserCreationForm):
         self.fields['username'].widget.attrs['placeholder'] = 'nick-name'
         self.fields['password1'].widget.attrs['placeholder'] = 'contraseña'
         self.fields['password2'].widget.attrs['placeholder'] = 'contraseña'
+
+class CustomClearableFileInput(ClearableFileInput):
+    template_with_clear = '<br>  <label for="%(clear_checkbox_id)s">%(clear_checkbox_label)s</label> %(clear)s'
+
+class FormArchivos(ModelForm):
+    file = forms.FileField()
+    class Meta:
+        model=Archivo
+        fields=[
+            'name',
+            'user',
+            'file'
+        ]
+        labels={
+            'name': 'Nombre de archivo',
+            'user': 'Usuario',
+            'file': 'Archivo',
+        }
+
+        widgets={
+            'file': CustomClearableFileInput,
+            'user': forms.Select
+        }
+
+
+
+        
+

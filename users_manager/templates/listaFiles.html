@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+    <div class="home-image">
+        <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
+    </div> 
+    <div class="home-intro-card">
+        <table>
+            <h2>Todos los archivos</h2>
+            {% if files %}
+            <th>id</th>
+            <th>nombre de archivo</th>
+            <th>usuario</th>
+            <th>file</th>
+            <th>Acciones</th>
+            
+            {% for f in files %}
+            <tr>
+                <td>{{f.id}}</td>
+                <td>{{f.name}}</td>
+                <td>{{f.user.user}}</td>
+                <td>{{f.file}}</td>
+                <td>
+                    <a href="{% url 'clasificador' f.id %}">Anallizar</a>
+                    <a href="{% url 'delete-file' f.id %}">Borrar</a>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+            {% else %}
+            <p>No hay conversaciones</p>
+            {% endif %}
+
+
+
+        </table>
+    </div>   
+
+{% endblock %}
