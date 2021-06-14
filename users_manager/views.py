@@ -229,6 +229,6 @@ def guardarConv(request, room):
     room_details = Room.objects.get(name=room)
     messages = Message.objects.filter(room=room_details.id)
     dict_msgs = {"messages":list(messages.values('user','value'))}
-    with open('C:/Users/USUARIO/Desktop/labIV/Proyecto lab IV 2021/prueba_datos.json', 'w') as outfile:
+    with open('prueba_datos.json', 'w') as outfile:
         json.dump(dict_msgs, outfile)
     return redirect('/'+room+'/?username='+ str(messages.values('user')))
