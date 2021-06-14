@@ -1,5 +1,5 @@
 from typing import List
-from users_manager.models import Archivo, CustomUser
+from users_manager.models import Archivo, CustomUser, Room, Message
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import render, redirect
@@ -10,6 +10,9 @@ from django.urls import reverse_lazy
 from users_manager.forms import FormArchivos, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import  CreateView
+import os
+
+from django.http import HttpResponse, JsonResponse
 """Instalar las siguientes librerias"""
 import joblib
 import json
@@ -77,6 +80,8 @@ def entrada(request):
        form = FormArchivos()
     return render(request,'FormArchivos.html',{'form':form})
 
+
+
 @login_required()
 def file_list(request):
     id_user = request.session['_auth_user_id']
@@ -117,13 +122,13 @@ def file_classifier(request,id_file):
     with file.open(mode='rb') as contenido:
         datos = json.load(contenido)
 
-        for m in datos['message']:
-            objetoMessage =  mensaje(m['text'],m['name'])
-            message = m['text']
+        for m in datos['messages']:
+            objetoMessage =  mensaje(m['value'],m['user'])
+            message = m['value']
             pre =predecir(message)
             objetoMessage.predict = pre
             lista.append(objetoMessage)
-            name.add(m['name'])
+            name.add(m['user'])
             if pre == 1:
                 agressive += 1
             else:
@@ -182,7 +187,48 @@ def file_delete(request,id_file):
         return redirect('listaArchivos')
     return render(request,"file_delete.html",{'file':f}) 
 
+def ingreso_chat(request):
+    return render(request, 'ingreso_chat.html')
+
+def room(request, room):
+    username = request.GET.get('username')
+    room_details = Room.objects.get(name=room)
+    return render(request, 'chat.html', {
+        'username': username,
+        'room': room,
+        'room_details': room_details
+    })
+
+def checkview(request):
+    room = request.POST['room_name']
+    username = request.POST['username']
+
+    if Room.objects.filter(name=room).exists():
+        return redirect('/'+room+'/?username='+username)
+    else:
+        new_room = Room.objects.create(name=room)
+        new_room.save()
+        return redirect('/'+room+'/?username='+username)
+
+def send(request):
+    message = request.POST['message']
+    username = request.POST['username']
+    room_id = request.POST['room_id']
+
+    new_message = Message.objects.create(value=message, user=username, room=room_id)
+    new_message.save()
+    return HttpResponse('Message sent successfully')
+
+def getMessages(request, room):
+    room_details = Room.objects.get(name=room)
+    messages = Message.objects.filter(room=room_details.id)
+    return JsonResponse({"messages":list(messages.values())})
 
 
-
-
+def guardarConv(request, room):
+    room_details = Room.objects.get(name=room)
+    messages = Message.objects.filter(room=room_details.id)
+    dict_msgs = {"messages":list(messages.values('user','value'))}
+    with open('C:/Users/USUARIO/Desktop/labIV/Proyecto lab IV 2021/prueba_datos.json', 'w') as outfile:
+        json.dump(dict_msgs, outfile)
+    return redirect('/'+room+'/?username='+ str(messages.values('user')))

@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'msg_mnt/css/ingreso_chat.css' %}">
+</head>
+<body>
+  {% include "navbar.html" %}
+<div align="center">
+    <h2>Foro</h2>
+</div>
+
+
+<div class="container">
+
+    <form id="post-form" method="POST" action="checkview">{% csrf_token %}
+        <label>Nombre de foro:</label>
+        <input type="text" name="room_name" id="room_name" width="100px" />
+        <label>Usuario:</label>
+        <input type="text" name="username" id="username" width="100px" />
+        <input type="submit" value="Entrar Foro">
+    </form>
+</div>
+
+
+</body>
+
+
+</html>

@@ -29,6 +29,14 @@ urlpatterns = [
     path('clasificador/',views.clasificador, name= "clasificador"),
     path('upload/', views.entrada, name = "subida"),
     path('listaArchivos/', views.file_list, name = "listaArchivos"),
+    
+    path('ingreso', views.ingreso_chat, name = "ingreso_chat"),
+    path('<str:room>/', views.room, name='room'),
+    path('checkview', views.checkview, name='checkview'),
+    path('send', views.send, name='send'),
+    path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
+    path('guardar/<str:room>',views.guardarConv, name = 'guardarConv'),
+    
     url(r'^accounts/login/$', views.profile_form),
     url(r'^classifier/(?P<id_file>\d+)/$', views.file_classifier, name= "clasificador"),
     url(r'^delete/(?P<id_file>\d+)/$', views.file_delete, name= "delete-file"),

@@ -12,8 +12,9 @@
     <div>
         <ul class="nav">
             <li><p class="tittle">Monitor de Conversaciones</p></li>
-            <li style="margin-left: 40%;"><a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a></li>
-            <li><a href="{%url 'subida' %}">Subir conversaciones</a></li>
+            <li style="margin-left: 35%;"><a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'ingreso_chat' %}">Chat</a></li>
+            <li><a href="{% url 'subida' %}">Subir conversaciones</a></li>
             <li><a href="{% url 'modelo' %}">Clasificar mensaje</a></li>
             <li><a href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
             
