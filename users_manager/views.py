@@ -16,8 +16,9 @@ import json
 def index(request):
     return render(request,"index.html",{"home":"active","user_loged":False})
 
+
 def index_loged(request):
-    return render(request,"index.html",{"home":"active","user_loged":True})
+    return render(request,"index.html",{"home":True, "user_loged":True})
 
 
 def profile_form(request):
@@ -26,7 +27,7 @@ def profile_form(request):
 
         if form.is_valid():
             form.save()
-            return render(request,"index.html",{"home":"active"})
+            return render(request,"index.html",{"home":True, "user_loged":True})
 
     else:
         form=ProfileForm()
@@ -38,6 +39,7 @@ class UserSignUp(CreateView):
     template_name = 'new_login.html'
     form_class = UserCreationForm
     success_url = reverse_lazy('profile-form')
+
 
 #Vistas del modelo
 def clasificador(request):
@@ -54,8 +56,10 @@ def clasificador(request):
         return modelo.predict(matriz)
     text = request.GET["tweet"]
     #Hacemos la prediccion de los datos ingresados 
+    id_user = request.session['_auth_user_id']
+    files = Archivo.objects.filter(user__user = id_user)
     pred = predecir(text)
-    context = {'text': text, 'pred': pred}
+    context = {'text': text, 'pred': pred, 'files':files, "user_loged":True, "misCnvs":"active"}
     
     return render(request, "resultado.html", context)
 
@@ -64,6 +68,7 @@ def modelo(request):
     id_user = request.session['_auth_user_id']
     files = Archivo.objects.filter(user__user = id_user)
     contexto = {'files':files, "user_loged":True, "misCnvs":"active"}
+
     return render(request, "modelo.html", contexto) #esta vista renderiza el archivo modelo.html 
 
 
@@ -181,17 +186,22 @@ def file_classifier(request,id_file):
         
     context = { 'lista': lista, 'labelsG': labelsGeneral, 'dataG':dataGeneral,'file_name':file_name,
                 'labelsU1': labelsUser1, 'dataU1': dataUser1, 'labelsU2': labelsUser2, 'dataU2': dataUser2,
-                'users': users}
+                'users': users, 'user_loged':True, 'misCnvs':True, 'clasifier':True}
     
     return render(request, "classifier.html", context)
 
 
 def file_delete(request,id_file):
+
+    id_user = request.session['_auth_user_id']
+    files = Archivo.objects.filter(user__user = id_user)
     f = Archivo.objects.get(id=id_file)
+    contexto = {'file':f,'files':files, "user_loged":True, "misCnvs":"active"}
     if request.method == 'POST':
         f.delete()
         return redirect('listaArchivos')
-    return render(request,"file_delete.html",{'file':f}) 
+
+    return render(request,"file_delete.html",contexto) 
 
 
 

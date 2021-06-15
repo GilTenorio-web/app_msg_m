@@ -7,6 +7,19 @@
  
     <div class="opaque_background"></div>
 
+    <div class="login card">
+        <div class="x"><a href="{% url 'home_unloged' %}">X</a></div>
+        <h2>Iniciar sesión</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input id="email" name="username" type="text" placeholder="nickname">
+            <input id="password" name="password" type="password" placeholder="contraseña">
+            <div class="button">
+                <button>INICIAR SESIÓN</button>
+            </div>
+        </form>
+    </div>
+
     <div id="div1" class="home-intro-card">
         <h2>Acerca de esta app</h2>
         <p style="font-size: larger;">
@@ -23,19 +36,6 @@
                 <li type="disc">Miembro de Grupo Vulnerable</li>
             </ul>
         </p>
-    </div>
-
-    <div class="login card">
-        <div class="x"><a href="{% url 'home_unloged' %}">X</a></div>
-        <h2>Iniciar sesión</h2>
-        <form method="POST">
-            {% csrf_token %}
-            <input id="email" name="username" type="text" placeholder="nickname">
-            <input id="password" name="password" type="password" placeholder="contraseña">
-            <div class="button">
-                <button>INICIAR SESIÓN</button>
-            </div>
-        </form>
     </div>
 
 {% endblock %}

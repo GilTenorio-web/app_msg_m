@@ -13,9 +13,11 @@
 <body>
     {% include "navbar.html" %}
 
-    <div class="home-image">
-        <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
-    </div>
+    {% if not clasifier %}
+        <div class="home-image">
+            <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
+        </div>
+    {% endif %}
 
     {% if home %}
         {% if user_loged %}

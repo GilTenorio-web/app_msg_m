@@ -5,14 +5,51 @@
 
 {% block content %}
 
-<div id="div1" class="home-intro-card">
-    <p>{{text}}</p>
-    {% if pred == 0%}
-    <p>Mensaje no agresivo</p>
-    {% else %}
-    <p>Mensaje agresivo</p>
-    {% endif %}
-    
-</div>  
+    <div class="opaque_background"></div>
+
+    <div id="div1" class="profile card">
+        <p>{{text}}</p>
+        {% if pred == 0%}
+        <p>Mensaje no agresivo</p>
+        {% else %}
+        <p>Mensaje agresivo</p>
+        {% endif %}
+        <button>
+            <a href="{% url 'listaArchivos' %}" style="text-decoration: none;">
+                Continuar
+            </a>
+        </button>
+    </div> 
+  
+    <div id="div1" class="home-intro-card">
+      <table>
+          {% if files %}
+              <h2>Todos los archivos</h2>
+               <th width="200px">Archivo</th>
+              <th width="200px">Usuario</th>
+              <th width="220px">Subido</th>
+              <th width="80px">Acciones</th>
+              
+              {% for f in files %}
+                  <tr>
+                      <td>{{f.name}}</td>
+                      <td>{{f.user.user}}</td>
+                      <td>{{f.date}}</td>
+                      <td>
+                          <a class="accion" href="{% url 'clasificador' f.id %}">Anallizar</a>                     
+                      </td>
+                      <td>
+                          <a class="accion" href="{% url 'delete-file' f.id %}">Borrar</a>
+                      </td>
+                  </tr>
+              {% endfor %}
+          {% else %}
+              <h2>No hay conversaciones</h2>
+          {% endif %}
+      </table>
+      <br>
+      <button><a class="botones" href="{%url 'subida' %}">Subir conversación</a></button>
+      <button><a class="botones" href="{%url 'modelo' %}">Analizar mensaje individual</a></button>
+    </div>
     
 {% endblock %}

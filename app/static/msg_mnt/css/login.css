@@ -23,7 +23,7 @@ div.login {
 }
 
 div.signup {
-    z-index: 10;
+    z-index: 60;
     margin-left: 40%;
     width: 35%;
 }

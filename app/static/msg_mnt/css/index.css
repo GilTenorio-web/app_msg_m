@@ -26,6 +26,19 @@ div.home-image2 img {
     font-size: 17px;
 }
 
+#div1_clasifier{
+    margin-top: 100px;
+    margin-left: 15%;
+    width: 60%;
+    text-align: left;
+}
+
+#container{
+    width: 55%;
+    margin-left: 50%;
+    margin-top: -125px;
+}
+
 div.home-intro-card {
     text-align: justify;
     position: absolute;
