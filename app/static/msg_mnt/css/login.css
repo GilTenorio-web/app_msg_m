@@ -12,6 +12,7 @@ div.card {
     background-color: white;
     box-shadow: 0 0 15px 2px rgb(207, 207, 207);
     text-align: center;
+    z-index: 50;
 }
 
 div.login {
@@ -86,4 +87,22 @@ div.x {
 div.x a {
     text-decoration: none;
     color:grey;
+}
+
+table th, td {
+    color: rgb(95, 94, 94);
+}
+
+a.botones {
+    text-decoration: none;
+    color:rgb(209, 93, 16);
+}
+
+button:hover a {
+    color: white;
+}
+
+a.accion {
+    text-decoration: none;
+    color: rgb(28, 101, 209);
 }

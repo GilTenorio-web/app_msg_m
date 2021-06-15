@@ -33,9 +33,10 @@ class CustomUser(models.Model):
         return '{}'.format(self.user)
     
 class Archivo(models.Model):
-    name=models.CharField(max_length=100)
-    user=models.ForeignKey(CustomUser,null=True,blank=True,on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    user = models.ForeignKey(CustomUser,null=True,blank=True,on_delete=models.CASCADE)
     file = models.FileField(upload_to="archivos/", null=True,blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return '{}'.format(self.name)

@@ -61,7 +61,11 @@ def clasificador(request):
 
 
 def modelo(request):
-    return render(request, "modelo.html") #esta vista renderiza el archivo modelo.html 
+    id_user = request.session['_auth_user_id']
+    files = Archivo.objects.filter(user__user = id_user)
+    contexto = {'files':files, "user_loged":True, "misCnvs":"active"}
+    return render(request, "modelo.html", contexto) #esta vista renderiza el archivo modelo.html 
+
 
 @login_required()
 def entrada(request):
@@ -75,17 +79,22 @@ def entrada(request):
        else:
             messages.error(request, "Error al procesar el formulario")
     else:
-       form = FormArchivos()
-    return render(request,'FormArchivos.html',{'form':form})
+        id_user = request.session['_auth_user_id']
+        files = Archivo.objects.filter(user__user = id_user)
+        form = FormArchivos()
+        contexto = {'form':form, 'files':files, "user_loged":True, "misCnvs":"active"}
+    return render(request,'FormArchivos.html',contexto)
+
 
 @login_required()
 def file_list(request):
+
     id_user = request.session['_auth_user_id']
-    
-    files = Archivo.objects.filter(user__user= id_user)
-    contexto = {'files': files}
+    files = Archivo.objects.filter(user__user = id_user)
+    contexto = {'files':files, "user_loged":True, "misCnvs":"active"}
 
     return render(request, 'listaFiles.html',contexto)
+
 
 def file_classifier(request,id_file):
     class mensaje:
@@ -175,6 +184,7 @@ def file_classifier(request,id_file):
                 'users': users}
     
     return render(request, "classifier.html", context)
+
 
 def file_delete(request,id_file):
     f = Archivo.objects.get(id=id_file)

@@ -1,17 +1,13 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'msg_mnt/css/login.css' %}">
-    <title>Index</title>
-</head>
-<body>
-    {% include "navbar.html" %}
 
-    <div class="profile card">
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+    <div class="opaque_background"></div>
+
+    <div id="div1" class="profile card">
         <h2>Subir archivo</h2>
         <form action="" method="POST", enctype="multipart/form-data".>
             {% csrf_token %}
@@ -21,5 +17,36 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+
+    <div id="div1" class="home-intro-card">
+        <table>
+            {% if files %}
+                <h2>Todos los archivos</h2>
+                <th width="200px">Archivo</th>
+                <th width="200px">Usuario</th>
+                <th width="220px">Subido</th>
+                <th width="80px">Acciones</th>
+                
+                {% for f in files %}
+                    <tr>
+                        <td>{{f.name}}</td>
+                        <td>{{f.user.user}}</td>
+                        <td>{{f.date}}</td>
+                        <td>
+                            <a class="accion" href="{% url 'clasificador' f.id %}">Anallizar</a>                     
+                        </td>
+                        <td>
+                            <a class="accion" href="{% url 'delete-file' f.id %}">Borrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <h2>No hay conversaciones</h2>
+            {% endif %}
+        </table>
+        <br>
+        <button><a class="botones" href="{%url 'subida' %}">Subir conversación</a></button>
+        <button><a class="botones" href="{%url 'subida' %}">Analizar mensaje individual</a></button>
+    </div>
+
+{% endblock %}

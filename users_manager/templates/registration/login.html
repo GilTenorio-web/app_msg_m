@@ -6,8 +6,27 @@
 {% block content %}
  
     <div class="opaque_background"></div>
+
+    <div id="div1" class="home-intro-card">
+        <h2>Acerca de esta app</h2>
+        <p style="font-size: larger;">
+            Esta aplicación web tiene como objetivo monitorear comentarios agresivos en interacciones virtuales a través
+            de texto.
+        </p>
+
+        <h2>Registrate o inicia sesión</h2>
+        <p style="font-size: larger;">
+            Puedes registrarte como:
+            <ul style="font-size: larger;">
+                <li type="disc">Academico</li>
+                   <li type="disc">Usuario de Redes Sociales</li>
+                <li type="disc">Miembro de Grupo Vulnerable</li>
+            </ul>
+        </p>
+    </div>
+
     <div class="login card">
-        <div class="x"><a href="{% url 'home' %}">X</a></div>
+        <div class="x"><a href="{% url 'home_unloged' %}">X</a></div>
         <h2>Iniciar sesión</h2>
         <form method="POST">
             {% csrf_token %}

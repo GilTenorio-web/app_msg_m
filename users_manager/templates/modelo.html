@@ -4,23 +4,52 @@
 {% block title %} Modelo {% endblock %}
 
 {% block content %}
-  <div class="home-image">
-    <img src="{% static 'msg_mnt/assets/IA1.jpg' %}">
-  </div> 
 
-  <div class="home-intro-card">
+  <div class="opaque_background"></div>
+
+  <div id="div1" class="profile card">
     <div >
       <h3>Ingresa un comentario</h3>
     </div>
 
     <div class="form_conf" style="margin: 1em;">
       <form action ="/clasificador/" method="get">
-          <textarea name="tweet" cols="70" rows="5" style="resize:none;"></textarea>
+          <textarea name="tweet" cols="45" rows="5" style="resize:none;"></textarea>
           <br>
           <input type="submit"  value="Enviar">
       </form>
     </div>
   </div> 
   
+  <div id="div1" class="home-intro-card">
+      <table>
+          {% if files %}
+              <h2>Todos los archivos</h2>
+               <th width="200px">Archivo</th>
+              <th width="200px">Usuario</th>
+              <th width="220px">Subido</th>
+              <th width="80px">Acciones</th>
+              
+              {% for f in files %}
+                  <tr>
+                      <td>{{f.name}}</td>
+                      <td>{{f.user.user}}</td>
+                      <td>{{f.date}}</td>
+                      <td>
+                          <a class="accion" href="{% url 'clasificador' f.id %}">Anallizar</a>                     
+                      </td>
+                      <td>
+                          <a class="accion" href="{% url 'delete-file' f.id %}">Borrar</a>
+                      </td>
+                  </tr>
+              {% endfor %}
+          {% else %}
+              <h2>No hay conversaciones</h2>
+          {% endif %}
+      </table>
+      <br>
+      <button><a class="botones" href="{%url 'subida' %}">Subir conversación</a></button>
+      <button><a class="botones" href="{%url 'modelo' %}">Analizar mensaje individual</a></button>
+  </div>
 
 {% endblock %}

@@ -14,12 +14,11 @@
             <li><p class="tittle">Monitor de Conversaciones</p></li>
 
             {% if user_loged %}
-                <li style="margin-left: 40%;">
+                <li style="margin-left: 55%;">
                     <a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a>
                 </li>
-                <li><a href="{%url 'subida' %}">Subir conversaciones</a></li>
-                <li><a href="{% url 'modelo' %}">Clasificar mensaje</a></li>
-                <li><a href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
+                <li><a class="{{ chat|yesno:'active,' }}" href="{% url 'modelo' %}">Simular chat</a></li>
+                <li><a class="{{ misCnvs|yesno:'active,' }}" href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
                 <li><a>{{user}}</a>
                      <ul>
                         <li><a href="{% url 'home_unloged' %}">Cerrar sesión</a></li>
