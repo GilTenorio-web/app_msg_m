@@ -10,6 +10,8 @@ from django.urls import reverse_lazy
 from users_manager.forms import FormArchivos, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import  CreateView
+import tkinter as tk
+from tkinter import filedialog
 import os
 
 from django.http import HttpResponse, JsonResponse
@@ -199,10 +201,12 @@ def room(request, room):
         'room_details': room_details
     })
 
+
 def checkview(request):
     room = request.POST['room_name']
     username = request.POST['username']
-
+    global usp 
+    usp = username
     if Room.objects.filter(name=room).exists():
         return redirect('/'+room+'/?username='+username)
     else:
@@ -217,7 +221,7 @@ def send(request):
 
     new_message = Message.objects.create(value=message, user=username, room=room_id)
     new_message.save()
-    return HttpResponse('Message sent successfully')
+    return HttpResponse('Mensaje enviado correctamente')
 
 def getMessages(request, room):
     room_details = Room.objects.get(name=room)
@@ -225,10 +229,22 @@ def getMessages(request, room):
     return JsonResponse({"messages":list(messages.values())})
 
 
+
+
 def guardarConv(request, room):
+    raiz = tk.Tk()
+    raiz.withdraw()
+    direccion = filedialog.asksaveasfilename(title = "Guardar Chat")
+    raiz.destroy()
     room_details = Room.objects.get(name=room)
     messages = Message.objects.filter(room=room_details.id)
     dict_msgs = {"messages":list(messages.values('user','value'))}
-    with open('prueba_datos.json', 'w') as outfile:
-        json.dump(dict_msgs, outfile)
-    return redirect('/'+room+'/?username='+ str(messages.values('user')))
+    global usp
+    if not direccion:
+        
+        return redirect('/'+room+'/?username='+usp )
+    else:
+        
+        with open(direccion, 'w') as outfile:
+            json.dump(dict_msgs, outfile)
+        return redirect('/'+room+'/?username='+usp )
