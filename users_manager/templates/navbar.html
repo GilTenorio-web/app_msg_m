@@ -12,18 +12,28 @@
     <div class="navbar0">
         <ul class="nav">
             <li><p class="tittle">Monitor de Conversaciones</p></li>
-            <li style="margin-left: 40%;"><a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a></li>
-            <li><a href="{%url 'subida' %}">Subir conversaciones</a></li>
-            <li><a href="{% url 'modelo' %}">Clasificar mensaje</a></li>
-            <li><a href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
-            
-            <li>
-                <a>Login</a>
-                <ul>
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'sign-up' %}">Registro</a></li>                
-                </ul>
-            </li>
+
+            {% if user_loged %}
+                <li style="margin-left: 40%;">
+                    <a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a>
+                </li>
+                <li><a href="{%url 'subida' %}">Subir conversaciones</a></li>
+                <li><a href="{% url 'modelo' %}">Clasificar mensaje</a></li>
+                <li><a href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
+                <li><a>{{user}}</a></li>
+            {% else %}
+                <li style="margin-left: 75%;">
+                    <a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                    <a>Iniciar sesión</a>
+                    <ul>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'sign-up' %}">Registro</a></li>                
+                    </ul>
+                </li>
+            {% endif %}
+
         </ul>
     </div>
 </body>

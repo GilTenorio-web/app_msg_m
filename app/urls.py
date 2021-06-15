@@ -21,7 +21,8 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home'),
+    path('', views.index, name='home_unlog'),
+    path('home', views.index_loged, name='home'),
     path('login/', LoginView.as_view(), {'template_name':'login.html'}, name='login'),
     path('sign-up/', views.UserSignUp.as_view(), name='sign-up'),
     path('profile-form/', views.profile_form, name='profile-form'),
@@ -32,8 +33,4 @@ urlpatterns = [
     url(r'^accounts/login/$', views.profile_form),
     url(r'^classifier/(?P<id_file>\d+)/$', views.file_classifier, name= "clasificador"),
     url(r'^delete/(?P<id_file>\d+)/$', views.file_delete, name= "delete-file"),
-
-
-
-
 ]

@@ -16,7 +16,10 @@ import json
 
 # Create your views here.
 def index(request):
-    return render(request,"index.html",{"home":"active"})
+    return render(request,"index.html",{"home":"active","user_loged":False})
+
+def index_loged(request):
+    return render(request,"index.html",{"home":"active","user_loged":True})
 
 
 def profile_form(request):

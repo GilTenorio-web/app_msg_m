@@ -66,6 +66,7 @@ ul, ol {
 
 .nav li ul li a{
     background-color: rgb(231, 231, 231);
+    margin-left: -40px;
 }
 
 .nav li:hover > ul {
