@@ -189,9 +189,11 @@ def file_delete(request,id_file):
         return redirect('listaArchivos')
     return render(request,"file_delete.html",{'file':f}) 
 
+#funcion para entrar a la plantilla de generacion de foro
 def ingreso_chat(request):
     return render(request, 'ingreso_chat.html')
 
+#funcion para obtener el nombre del foro y el nombre del usuario y enviarlo
 def room(request, room):
     username = request.GET.get('username')
     room_details = Room.objects.get(name=room)
@@ -201,7 +203,9 @@ def room(request, room):
         'room_details': room_details
     })
 
+usp = ""
 
+#funcion que obtiene el nombre del foro y el id para crear el chat
 def checkview(request):
     room = request.POST['room_name']
     username = request.POST['username']
@@ -214,6 +218,7 @@ def checkview(request):
         new_room.save()
         return redirect('/'+room+'/?username='+username)
 
+#funcion para enviar un mensaje
 def send(request):
     message = request.POST['message']
     username = request.POST['username']
@@ -223,6 +228,7 @@ def send(request):
     new_message.save()
     return HttpResponse('Mensaje enviado correctamente')
 
+#funcion que agarra los mensajes en la base de datos y lo imprime en pantalla
 def getMessages(request, room):
     room_details = Room.objects.get(name=room)
     messages = Message.objects.filter(room=room_details.id)
@@ -230,7 +236,7 @@ def getMessages(request, room):
 
 
 
-
+#funcion para guardar la conversacion del foro
 def guardarConv(request, room):
     raiz = tk.Tk()
     raiz.withdraw()
@@ -244,7 +250,7 @@ def guardarConv(request, room):
         
         return redirect('/'+room+'/?username='+usp )
     else:
-        
+
         with open(direccion, 'w') as outfile:
             json.dump(dict_msgs, outfile)
         return redirect('/'+room+'/?username='+usp )
