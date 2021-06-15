@@ -1,7 +1,5 @@
 from typing import List
-from users_manager.models import Archivo, CustomUser
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from users_manager.models import Archivo
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

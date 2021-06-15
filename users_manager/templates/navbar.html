@@ -20,7 +20,11 @@
                 <li><a href="{%url 'subida' %}">Subir conversaciones</a></li>
                 <li><a href="{% url 'modelo' %}">Clasificar mensaje</a></li>
                 <li><a href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
-                <li><a>{{user}}</a></li>
+                <li><a>{{user}}</a>
+                     <ul>
+                        <li><a href="{% url 'home_unloged' %}">Cerrar sesión</a></li>
+                    </ul>
+                </li>
             {% else %}
                 <li style="margin-left: 75%;">
                     <a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a>
