@@ -1,0 +1,17 @@
+{
+    "messages": [
+        {
+            "user": "Arturo",
+            "value": "Hola, buenas tardes profesora"
+        },
+        {
+            "user": "Juan",
+            "value": "Callate, perra"
+        },
+        {
+            "user": "Arturo",
+            "value": "Hola"
+        }
+        
+    ]
+}

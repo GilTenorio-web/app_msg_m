@@ -12,12 +12,11 @@
     <div class="navbar0">
         <ul class="nav">
             <li><p class="tittle">Monitor de Conversaciones</p></li>
-
             {% if user_loged %}
                 <li style="margin-left: 55%;">
                     <a class="{{ home|yesno:'active,' }}" href="{% url 'home' %}">Home</a>
                 </li>
-                <li><a class="{{ chat|yesno:'active,' }}" href="{% url 'modelo' %}">Simular chat</a></li>
+                <li><a class="{{ chat|yesno:'active,' }}" href="{% url 'ingreso_chat' %}">Simular chat</a></li>
                 <li><a class="{{ misCnvs|yesno:'active,' }}" href="{% url 'listaArchivos' %}">Mis conversaciones</a></li>
                 <li><a>{{user}}</a>
                      <ul>
@@ -36,7 +35,6 @@
                     </ul>
                 </li>
             {% endif %}
-
         </ul>
     </div>
 </body>
