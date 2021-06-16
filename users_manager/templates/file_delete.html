@@ -11,7 +11,7 @@
         <h2>Eliminar archivo</h2>
         <form action="" method="POST">
             {% csrf_token %}
-            <h3>¿Desea eliminar el archivo de {{file.name}}</h3>
+            <h3>¿Desea eliminar el archivo de {{file.name}}?</h3>
             <div class="button">
                 <button type="submit">Si, eliminar</button>
                 <a href="{% url 'listaArchivos'%}">Cancelar</a>

@@ -10,6 +10,8 @@ from django.urls import reverse_lazy
 from users_manager.forms import FormArchivos, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import  CreateView
+import tkinter as tk
+from tkinter import filedialog
 import os
 
 from django.http import HttpResponse, JsonResponse
@@ -19,7 +21,7 @@ import json
 
 # Create your views here.
 def index(request):
-    return render(request,"index.html",{"home":"active","user_loged":False})
+    return render(request,"index.html",{"home":True,"user_loged":False})
 
 
 def index_loged(request):
@@ -36,7 +38,8 @@ def profile_form(request):
 
     else:
         form=ProfileForm()
-    return render(request,"profile-form.html",{"login":"active", "form":form})
+
+    return render(request,"profile-form.html",{"login":True, "form":form})
 
 
 class UserSignUp(CreateView):
@@ -94,8 +97,6 @@ def entrada(request):
         form = FormArchivos()
         contexto = {'form':form, 'files':files, "user_loged":True, "misCnvs":"active"}
     return render(request,'FormArchivos.html',contexto)
-
-
 
 
 @login_required()
@@ -203,15 +204,17 @@ def file_delete(request,id_file):
     id_user = request.session['_auth_user_id']
     files = Archivo.objects.filter(user__user = id_user)
     f = Archivo.objects.get(id=id_file)
-    contexto = {'file':f,'files':files, "user_loged":True, "misCnvs":"active"}
+    contexto = {'file':f,'files':files, "user_loged":True, "misCnvs":True}
     if request.method == 'POST':
         f.delete()
         return redirect('listaArchivos')
 
     return render(request,"file_delete.html",contexto) 
 
+
 def ingreso_chat(request):
-    return render(request, 'ingreso_chat.html')
+    return render(request, 'ingreso_chat.html', {"user_loged":True, "chat":True})
+
 
 def room(request, room):
     username = request.GET.get('username')
@@ -219,12 +222,18 @@ def room(request, room):
     return render(request, 'chat.html', {
         'username': username,
         'room': room,
-        'room_details': room_details
+        'room_details': room_details,
+        'user_loged': True,
+        'chat': True
     })
 
+
+usp = ""
 def checkview(request):
+    global usp 
     room = request.POST['room_name']
     username = request.POST['username']
+    usp = username
 
     if Room.objects.filter(name=room).exists():
         return redirect('/'+room+'/?username='+username)
@@ -232,6 +241,7 @@ def checkview(request):
         new_room = Room.objects.create(name=room)
         new_room.save()
         return redirect('/'+room+'/?username='+username)
+
 
 def send(request):
     message = request.POST['message']
@@ -242,6 +252,7 @@ def send(request):
     new_message.save()
     return HttpResponse('Message sent successfully')
 
+
 def getMessages(request, room):
     room_details = Room.objects.get(name=room)
     messages = Message.objects.filter(room=room_details.id)
@@ -249,9 +260,19 @@ def getMessages(request, room):
 
 
 def guardarConv(request, room):
+    raiz = tk.Tk()
+    raiz.withdraw()
+    direccion = filedialog.asksaveasfilename(title = "Guardar Chat")
+    raiz.destroy()
     room_details = Room.objects.get(name=room)
     messages = Message.objects.filter(room=room_details.id)
     dict_msgs = {"messages":list(messages.values('user','value'))}
-    with open('prueba_datos.json', 'w') as outfile:
-        json.dump(dict_msgs, outfile)
-    return redirect('/'+room+'/?username='+ str(messages.values('user')))
+    global usp
+    if not direccion:
+
+        return redirect('/'+room+'/?username='+usp )
+    else:
+
+        with open(direccion, 'w') as outfile:
+            json.dump(dict_msgs, outfile)
+        return redirect('/'+room+'/?username='+usp )
