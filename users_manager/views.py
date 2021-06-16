@@ -21,11 +21,11 @@ import json
 
 # Create your views here.
 def index(request):
-    return render(request,"index.html",{"home":True,"user_loged":False})
+    return render(request,"index.html", {"home":True, "user_loged":False})
 
 
 def index_loged(request):
-    return render(request,"index.html",{"home":True, "user_loged":True})
+    return render(request,"index.html", {"home":True, "user_loged":True})
 
 
 def profile_form(request):
@@ -34,12 +34,14 @@ def profile_form(request):
 
         if form.is_valid():
             form.save()
-            return render(request,"index.html",{"home":True, "user_loged":True})
+            return render(request,"index.html", {"home":True, "newUser":2})
+        else:
+            return render(request,"index.html", {"home":True, "newUser":1})
 
     else:
         form=ProfileForm()
 
-    return render(request,"profile-form.html",{"login":True, "form":form})
+    return render(request,"profile-form.html",{"form":form})
 
 
 class UserSignUp(CreateView):

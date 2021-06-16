@@ -69,6 +69,7 @@
 
         {% else %}
             <div id="div1" class="home-intro-card">
+                
                 <h2>Acerca de esta app</h2>
                 <p style="font-size: larger;">
                     Esta aplicación web tiene como objetivo monitorear comentarios agresivos en interacciones virtuales a través
@@ -81,10 +82,21 @@
                     <ul style="font-size: larger;">
                         <li type="disc">Academico</li>
                         <li type="disc">Usuario de Redes Sociales</li>
-                        <li type="disc">Miembro de Grupo Vulnerable</li>
+                        <li type="disc">Miembro de Grupo Vulnerable (no puede simular chat)</li>
                     </ul>
                 </p>
             </div>
+            
+            {% if newUser == 1 %}
+                <div class="card" style="margin-left:40%; margin-top:150px;">
+                    <p>Ups! algo salio mal, intenta registrarte de nuevo.</p>
+                </div>
+            {% elif newUser == 2 %}
+                <div class="card" style="margin-left:40%; margin-top:150px;">
+                    <p>Felicidades! estas registrado, por favor inicia sesion.</p>
+                </div>
+            {% endif %}
+
         {% endif %}
     {% endif %}
 
